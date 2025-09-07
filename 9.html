@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="stylee.css" />
+    <title>ملعب النجوم</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo" ><a href="index.html">موقع الحجوزات</a></div>
+      <div class="lang-switcher">
+        <button onclick="setLanguage('ar')" title="العربية">🇸🇦</button>
+        <button onclick="setLanguage('en')" title="English">🇬🇧</button>
+        <button onclick="setLanguage('fr')" title="Français">🇫🇷</button>
+        <button class="toggle-dark" id="darkModeBtn" title="تبديل الوضع الليلي">
+          🌙
+        </button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>ملعب النجوم</h1>
+      <p>📍 الإسكندرية</p>
+      <img
+        src="GD-EG-Alex-Stade002.JPG"
+        alt="ملعب النجوم"
+        class="place-image"
+      />
+      <p class="description">
+        ملعب النجوم هو وجهتك المثالية لممارسة الرياضة والترفيه في مدينة
+        الإسكندرية. يتميز الملعب بتجهيزاته الحديثة ومساحته الواسعة التي تناسب
+        مختلف أنواع الرياضات مثل كرة القدم، كرة السلة، والتنس. يوفر الملعب بيئة
+        آمنة ومريحة للرياضيين من جميع المستويات، مع وجود مدربين محترفين يقدمون
+        الدعم والإرشاد لتحسين الأداء. بالإضافة إلى ذلك، يحتوي الملعب على مرافق
+        خدمية متكاملة تشمل غرف تبديل الملابس، مقهى، ومنطقة استراحة للاعبين
+        والجمهور على حد سواء.
+      </p>
+      <p><strong>السعر:</strong> 75$ / يوم</p>
+      <p class="rating">⭐ ⭐ ⭐ ⭐ ☆</p>
+      <a href="#" id="bookNowLink" class="btn">احجز الآن</a>
+
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps?q=ملعب+النجوم+الإسكندرية&output=embed"
+          width="100%"
+          height="400"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+    <div id="bookingModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>بيانات الحجز - ملعب النجوم</h2>
+        <form id="bookingForm">
+          <input type="text" placeholder="الاسم الكامل" required />
+          <input type="email" placeholder="البريد الإلكتروني" required />
+          <input type="tel" placeholder="رقم الهاتف" required />
+          <input type="number" placeholder="عدد الأشخاص" min="1" required />
+          <input type="date" required />
+          <button type="submit" class="btn">تأكيد الحجز</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        © 2025 موقع الحجوزات. تواصل معنا:
+        <a href="https://elghazaly-web.netlify.app/">ebrahimelghazaly.com</a> |
+        <a href="https://t.me/elghazaly_web_learn_programming" target="_self">01270719250</a> |
+        <a href="https://www.facebook.com/ebrahim.elghazaly.1" target="_self" rel="noopener">facebook</a> |
+        <a href="https://www.tiktok.com/@ebrahimelghazaly?lang=en" target="_self" rel="noopener">tektok</a>
+      </p>
+    </footer>
+    <script>
+      const modal = document.getElementById("bookingModal");
+      const bookingForm = document.getElementById("bookingForm");
+      const bookNowLink = document.getElementById("bookNowLink");
+      const closeBtn = document.querySelector(".close");
+
+      bookNowLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+      });
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        bookingForm.reset();
+      });
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("show");
+          modal.setAttribute("aria-hidden", "true");
+          bookingForm.reset();
+        }
+      });
+      bookingForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("تم تأكيد الحجز في ملعب النجوم ✅");
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        bookingForm.reset();
+      });
+      function setDarkMode(enabled) {
+        if (enabled) {
+          document.body.classList.add("dark");
+          darkModeBtn.textContent = "☀️";
+        } else {
+          document.body.classList.remove("dark");
+          darkModeBtn.textContent = "🌙";
+        }
+        localStorage.setItem("darkMode", enabled ? "true" : "false");
+      }
+      darkModeBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.contains("dark");
+        setDarkMode(!isDark);
+      });
+      if (localStorage.getItem("darkMode") === "true") {
+        setDarkMode(true);
+      }
+    </script>
+  </body>
+</html>

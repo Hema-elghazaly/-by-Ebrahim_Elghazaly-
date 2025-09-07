@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="apple-touch-icon.png" type="image/x-icon">
+    <title>موقع الحجوزات By (Ebrahim Elghazaly)</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">موقع الحجوزات</div>
+      <div class="lang-switcher">
+        <button onclick="setLanguage('ar')" title="العربية">🇸🇦</button>
+        <button onclick="setLanguage('en')" title="English">🇬🇧</button>
+        <button onclick="setLanguage('fr')" title="Français">🇫🇷</button>
+        <button class="toggle-dark" id="darkModeBtn" title="تبديل الوضع الليلي">🌙</button>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <h1>احجز مكانك بسهولة</h1>
+      <p>فنادق - قاعات - ملاعب في مصر</p>
+    </header>
+
+    <section class="search-section">
+      <input type="text" id="city" placeholder="المدينة" />
+      <select id="type">
+        <option value="">الكل</option>
+        <option value="hotel">فندق</option>
+        <option value="hall">قاعة</option>
+        <option value="stadium">ملعب</option>
+      </select>
+      <input type="date" id="date" />
+      <button onclick="filterResults()">بحث</button>
+    </section>
+
+    <div class="btn-group">
+      <button id="showFavoritesBtn">عرض المفضلة فقط</button>
+      <label for="uploadInput" title="رفع صورة مكان جديد">رفع صورة</label>
+      <input type="file" id="uploadInput" accept="image/*" multiple />
+    </div>
+
+    <section id="results" class="results"></section>
+
+    <!-- مودال الحجز -->
+    <div id="bookingModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <span class="close" role="button" aria-label="إغلاق" tabindex="0">&times;</span>
+        <h2 id="modalTitle">بيانات الحجز</h2>
+        <form id="bookingForm">
+          <input type="text" placeholder="الاسم الكامل" required />
+          <input type="email" placeholder="البريد الإلكتروني" required />
+          <input type="tel" placeholder="رقم الهاتف" required />
+          <input type="number" placeholder="عدد الأشخاص" min="1" required />
+          <input type="date" required />
+          <button type="submit" class="btn">تأكيد الحجز</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        © 2025 موقع الحجوزات. تواصل معنا:
+        <a href="https://elghazaly-web.netlify.app/">ebrahimelghazaly.com</a> |
+        <a href="https://t.me/elghazaly_web_learn_programming" target="_self">01270719250</a> |
+        <a href="https://www.facebook.com/ebrahim.elghazaly.1" target="_self" rel="noopener">facebook</a> |
+        <a href="https://www.tiktok.com/@ebrahimelghazaly?lang=en" target="_self" rel="noopener">tektok</a>
+      </p>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
