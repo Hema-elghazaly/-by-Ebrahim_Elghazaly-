@@ -180,10 +180,10 @@ function closeBookingModal() {
 }
 closeModalBtn.addEventListener("click", closeBookingModal);
 bookingForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert(translations[currentLang].modalConfirm(selectedPlaceName));
-  closeBookingModal();
+  // هنا مش هنعمل preventDefault عشان الفورم يتبعت فعلاً
+  document.getElementById("selectedPlace").value = selectedPlaceName;
 });
+
 
 // الوضع الليلي
 function setDarkMode(enabled) {
@@ -243,3 +243,5 @@ function setLanguage(lang) {
 // تشغيل أولي
 setLanguage(currentLang);
 renderPlaces(places);
+
+

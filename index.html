@@ -9,7 +9,7 @@
   </head>
   <body>
     <nav class="navbar">
-      <div class="logo">موقع الحجوزات</div>
+      <div class="logo"><a href="#home" style=" text-shadow: 0 0 8px #025025; ">موقع الحجوزات</a></div>
       <div class="lang-switcher">
         <button onclick="setLanguage('ar')" title="العربية">🇸🇦</button>
         <button onclick="setLanguage('en')" title="English">🇬🇧</button>
@@ -19,12 +19,14 @@
         </button>
       </div>
     </nav>
-
-    <header class="hero">
+    <section id="home">
+       <header id=" home " class="hero">
       <h1>احجز مكانك بسهولة</h1>
       <p>فنادق - قاعات - ملاعب في مصر</p>
     </header>
 
+    </section>
+    
     <section class="search-section">
       <input
         type="text"
@@ -56,8 +58,17 @@
           ملعب
         </option>
       </select>
-      <input type="date" id="date" style="color: rgb(255, 255, 255); font-weight: bold; font-size: 15px" />
-      <button onclick="filterResults()" style="color: rgb(255, 255, 255); font-weight: bold; font-size: 15px">بحث</button>
+      <input
+        type="date"
+        id="date"
+        style="color: rgb(255, 255, 255); font-weight: bold; font-size: 15px"
+      />
+      <button
+        onclick="filterResults()"
+        style="color: rgb(255, 255, 255); font-weight: bold; font-size: 15px"
+      >
+        بحث
+      </button>
     </section>
 
     <div class="btn-group">
@@ -80,12 +91,28 @@
           >&times;</span
         >
         <h2 id="modalTitle">بيانات الحجز</h2>
-        <form id="bookingForm">
-          <input type="text" placeholder="الاسم الكامل" required />
-          <input type="email" placeholder="البريد الإلكتروني" required />
-          <input type="tel" placeholder="رقم الهاتف" required />
-          <input type="number" placeholder="عدد الأشخاص" min="1" required />
-          <input type="date" required />
+        <form
+          id="bookingForm"
+          action="https://formspree.io/f/mdklbgwe"
+          method="POST"
+        >
+          <input type="text" name="name" placeholder="الاسم الكامل" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="البريد الإلكتروني"
+            required
+          />
+          <input type="tel" name="phone" placeholder="رقم الهاتف" required />
+          <input
+            type="number"
+            name="guests"
+            placeholder="عدد الأشخاص"
+            min="1"
+            required
+          />
+          <input type="date" name="date" required />
+          <input type="hidden" name="place" id="selectedPlace" />
           <button type="submit" class="btn">تأكيد الحجز</button>
         </form>
       </div>

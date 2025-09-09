@@ -8,7 +8,7 @@
   </head>
   <body>
     <nav class="navbar">
-     <div class="logo" ><a href="index.html">موقع الحجوزات</a></div>
+      <div class="logo"><a href="index.html">موقع الحجوزات</a></div>
       <div class="lang-switcher">
         <button onclick="setLanguage('ar')" title="العربية">🇸🇦</button>
         <button onclick="setLanguage('en')" title="English">🇬🇧</button>
@@ -48,12 +48,28 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>بيانات الحجز - قاعة العروس</h2>
-        <form id="bookingForm">
-          <input type="text" placeholder="الاسم الكامل" required />
-          <input type="email" placeholder="البريد الإلكتروني" required />
-          <input type="tel" placeholder="رقم الهاتف" required />
-          <input type="number" placeholder="عدد الأشخاص" min="1" required />
-          <input type="date" required />
+        <form
+          id="bookingForm"
+          action="https://formspree.io/f/mdklbgwe"
+          method="POST"
+        >
+          <input type="text" name="name" placeholder="الاسم الكامل" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="البريد الإلكتروني"
+            required
+          />
+          <input type="tel" name="phone" placeholder="رقم الهاتف" required />
+          <input
+            type="number"
+            name="guests"
+            placeholder="عدد الأشخاص"
+            min="1"
+            required
+          />
+          <input type="date" name="date" required />
+          <input type="hidden" name="place" id="selectedPlace" />
           <button type="submit" class="btn">تأكيد الحجز</button>
         </form>
       </div>
@@ -63,9 +79,23 @@
       <p>
         © 2025 موقع الحجوزات. تواصل معنا:
         <a href="https://elghazaly-web.netlify.app/">ebrahimelghazaly.com</a> |
-        <a href="https://t.me/elghazaly_web_learn_programming" target="_self">01270719250</a> |
-        <a href="https://www.facebook.com/ebrahim.elghazaly.1" target="_self" rel="noopener">facebook</a> |
-        <a href="https://www.tiktok.com/@ebrahimelghazaly?lang=en" target="_self" rel="noopener">tektok</a>
+        <a href="https://t.me/elghazaly_web_learn_programming" target="_self"
+          >01270719250</a
+        >
+        |
+        <a
+          href="https://www.facebook.com/ebrahim.elghazaly.1"
+          target="_self"
+          rel="noopener"
+          >facebook</a
+        >
+        |
+        <a
+          href="https://www.tiktok.com/@ebrahimelghazaly?lang=en"
+          target="_self"
+          rel="noopener"
+          >tektok</a
+        >
       </p>
     </footer>
     <script>
@@ -88,11 +118,10 @@
           bookingForm.reset();
         }
       });
+      closeModalBtn.addEventListener("click", closeBookingModal);
       bookingForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        alert("تم تأكيد الحجز في قاعة العروس ✅");
-        modal.classList.remove("show");
-        bookingForm.reset();
+        // هنا مش هنعمل preventDefault عشان الفورم يتبعت فعلاً
+        document.getElementById("selectedPlace").value = selectedPlaceName;
       });
       function setDarkMode(enabled) {
         if (enabled) {
